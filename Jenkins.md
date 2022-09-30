@@ -1,6 +1,6 @@
 
 
-##
+## Jenkins File For Declarative Syntax for CI/CD of  Terraform  
 
 - Current url is  http://ec2-54-157-255-249.compute-1.amazonaws.com:8080/
 -  i  want to change port
@@ -38,8 +38,8 @@ pipeline {
         stage('Clone Git Repo') {
 
             steps {
-                sh 'rm -rf Jenkins3-DP'
-                sh 'git clone -b Jenkins3-DP https://github.com/Shiva-Juturi/Jenkins3-DP.git Jenkins3-DP'
+                sh 'rm -rf Jenkins31-DP'
+                sh 'git clone -b Jenkins31-DP  https://github.com/Shiva-Juturi/Jenkinsday3-DP.git  Jenkins31-DP'
                 sh 'ls -al'
             }
         }
@@ -51,7 +51,7 @@ pipeline {
                     }
                 }
             steps {
-                dir('Jenkins3-DP/Jenkins3-DP') {
+                dir('Jenkins31-DP/Jenkins3-DP') {
                     sh 'terraform init'
                     sh 'terraform plan'
                 }
@@ -64,7 +64,7 @@ pipeline {
                     }
                 }
             steps {
-                dir('Jenkins3-DP/Jenkins3-DP') {
+                dir('Jenkins31-DP/Jenkins3-DP') {
                     sh 'terraform init'
                     sh 'terraform apply --auto-approve'
                 }
@@ -77,7 +77,7 @@ pipeline {
                     }
                 }
             steps {
-                dir('Jenkins3-DP/Jenkins3-DP') {
+                dir('Jenkins31-DP/Jenkins3-DP') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
                 }
@@ -102,3 +102,42 @@ Unpacking objects: 100% (9/9), 954.58 KiB | 12.73 MiB/s, done.
 root@ip-192-168-0-252:~#
 
 ```
+- i need to set these in windows
+```
+
+git config --global user.name "XXXXX"
+git config --global user.email "XXXXXXX"
+git config --global user.password "XXXXX"
+git config --global credential.helper store
+git config --list --show-origin
+
+```
+
+
+- i have repository (https://github.com/Shiva-Juturi/Jenkinsday3-DP.git) it has main and  Jenkins31-DP  branches
+- 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
+
+# Jenkins Config Backup
+- for this we can see the
+
+```
+In fact you have just to use this url to reactivate your deleted job : http://[url_of_jenkins]/jobConfigHistory/?filter=deleted
+
+
+Download Plugin Job Config History
+
+Download steps:- Manage Jenkins -> Manage Plugin -> Available -> JobConfigHistory Download and install
+
+After Installation step:- Jenkins -> Job Config History -> Show deleted jobs only and restore the jobs
+http://[url_of_jenkins]/jobConfigHistory/?filter=deleted
+
+http://ec2-54-157-255-249.compute-1.amazonaws.com:8080/jobConfigHistory/?filter=deleted
+
+
+
+
+```
+
+# RBAC
+
+- Role-based Authorization Strategy
