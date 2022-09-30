@@ -36,9 +36,10 @@ pipeline {
 
     stages {
         stage('Clone Git Repo') {
+
             steps {
-                sh 'rm -rf terraformsingleinstance'
-                sh 'git clone -b Jenkins3-DP https://github.com/Shiva-Juturi/Jenkins3-DP.git'
+                sh 'rm -rf Jenkins3-DP'
+                sh 'git clone -b Jenkins3-DP https://github.com/Shiva-Juturi/Jenkins3-DP.git Jenkins3-DP'
                 sh 'ls -al'
             }
         }
@@ -46,11 +47,11 @@ pipeline {
         stage('Terraform Plan') {
              when {
                     expression {
-                        params.PLAN == 'NO'
+                        params.PLAN == 'YES'
                     }
                 }
             steps {
-                dir('Jenkins3-DP') {
+                dir('Jenkins3-DP/Jenkins3-DP') {
                     sh 'terraform init'
                     sh 'terraform plan'
                 }
@@ -59,11 +60,11 @@ pipeline {
         stage('Terraform Apply') {
              when {
                     expression {
-                        params.APPLY == 'NO'
+                        params.APPLY == 'YES'
                     }
                 }
             steps {
-                dir('Jenkins3-DP') {
+                dir('Jenkins3-DP/Jenkins3-DP') {
                     sh 'terraform init'
                     sh 'terraform apply --auto-approve'
                 }
@@ -76,7 +77,7 @@ pipeline {
                     }
                 }
             steps {
-                dir('Jenkins3-DP') {
+                dir('Jenkins3-DP/Jenkins3-DP') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
                 }
@@ -84,5 +85,20 @@ pipeline {
         }
     }
 }
+
+
+```
+
+```
+root@ip-192-168-0-252:~# git clone https://github.com/Shiva-Juturi/Jenkins3-DP.git
+Cloning into 'Jenkins3-DP'...
+Username for 'https://github.com': shiva2cloud.juturi@gmail.com
+Password for 'https://shiva2cloud.juturi@gmail.com@github.com':
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 9 (delta 1), reused 9 (delta 1), pack-reused 0
+Unpacking objects: 100% (9/9), 954.58 KiB | 12.73 MiB/s, done.
+root@ip-192-168-0-252:~#
 
 ```

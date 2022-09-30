@@ -6,8 +6,8 @@ pipeline {
         stage('Clone Git Repo') {
             
             steps {
-                sh 'rm -rf Jenkins3-DP'
-                sh 'git clone -b Jenkins3-DP https://github.com/Shiva-Juturi/Jenkins3-DP.git   Jenkins3-DP'
+                sh 'rm -rf Jenkins31-DP'
+                sh 'git clone -b Jenkins31-DP  https://github.com/Shiva-Juturi/Jenkins3-DP.git  Jenkins31-DP'
                 sh 'ls -al'
             }
         }
@@ -19,7 +19,7 @@ pipeline {
                     }
                 }
             steps {
-                dir('Jenkins3-DP/Jenkins3-DP') {
+                dir('Jenkins31-DP') {
                     sh 'terraform init'
                     sh 'terraform plan'
                 }
@@ -32,7 +32,7 @@ pipeline {
                     }
                 }
             steps {
-                dir('Jenkins3-DP/Jenkins3-DP') {
+                dir('Jenkins31-DP') {
                     sh 'terraform init'
                     sh 'terraform apply --auto-approve'
                 }
@@ -45,7 +45,7 @@ pipeline {
                     }
                 }
             steps {
-                dir('Jenkins3-DP/Jenkins3-DP') {
+                dir('Jenkins31-DP') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
                 }
