@@ -7,7 +7,7 @@ pipeline {
             
             steps {
                 sh 'rm -rf Jenkins31-DP'
-                sh 'git clone -b Jenkins31-DP  https://github.com/Shiva-Juturi/Jenkins3-DP.git  Jenkins31-DP'
+                sh 'git clone -b Jenkins31-DP  https://github.com/Shiva-Juturi/Jenkinsday3-DP.git  Jenkins31-DP'
                 sh 'ls -al'
             }
         }
